@@ -184,18 +184,7 @@ const CreateContract = () => {
                   {contract && (
                     <ContractFormat 
                       contract={contract} 
-                      contractData={{
-                        firstPartyName: contractData.firstPartyName,
-                        firstPartyNationality: contractData.firstPartyNationality,
-                        firstPartyAddress: contractData.firstPartyAddress,
-                        firstPartyID: contractData.firstPartyID,
-                        secondPartyName: contractData.secondPartyName,
-                        secondPartyNationality: contractData.secondPartyNationality,
-                        secondPartyAddress: contractData.secondPartyAddress,
-                        secondPartyID: contractData.secondPartyID,
-                        contractDate: contractData.contractDate,
-                        additionalTerms: contractData.additionalTerms
-                      }}
+                      contractData={contractData}
                     />
                   )}
                   
