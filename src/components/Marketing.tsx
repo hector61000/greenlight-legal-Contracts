@@ -11,7 +11,7 @@ const Marketing: React.FC = () => {
         {/* First Marketing Ad */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="bg-gradient-to-r from-blue-600 to-green-500 h-48 flex items-center justify-center">
-            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Marketing" className="w-full h-full object-cover" />
+            <img src="/lovable-uploads/570d9971-5068-4d70-86b4-c6619ddeaaa9.png" alt="صورة قانونية" className="w-full h-full object-cover" />
           </div>
           <div className="p-6">
             <h3 className="text-xl font-bold mb-3">عقود قانونية موثوقة</h3>
@@ -23,7 +23,7 @@ const Marketing: React.FC = () => {
         {/* Second Marketing Ad */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="bg-gradient-to-r from-green-500 to-blue-600 h-48 flex items-center justify-center">
-            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" alt="Marketing" className="w-full h-full object-cover" />
+            <img src="/lovable-uploads/570d9971-5068-4d70-86b4-c6619ddeaaa9.png" alt="صورة قانونية" className="w-full h-full object-cover" />
           </div>
           <div className="p-6">
             <h3 className="text-xl font-bold mb-3">تخصيص العقود بسهولة</h3>
@@ -37,7 +37,7 @@ const Marketing: React.FC = () => {
       <div className="mt-8 bg-white rounded-lg shadow-md overflow-hidden">
         <div className="md:flex">
           <div className="md:w-1/2">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Marketing" className="w-full h-full object-cover" />
+            <img src="/lovable-uploads/570d9971-5068-4d70-86b4-c6619ddeaaa9.png" alt="صورة قانونية" className="w-full h-full object-cover" />
           </div>
           <div className="md:w-1/2 p-6 flex flex-col justify-center">
             <h3 className="text-2xl font-bold mb-3">انضم إلى أكثر من 2000 محامي يستخدمون منصة جرين لايت</h3>
