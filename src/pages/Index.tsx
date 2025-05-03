@@ -1,19 +1,13 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import Features from '../components/Features';
-import ContractsList from '../components/ContractsList';
+import Marketing from '../components/Marketing';
 import Footer from '../components/Footer';
 
 const Index = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
@@ -21,7 +15,7 @@ const Index = () => {
         <Hero />
         <Stats />
         <Features />
-        <ContractsList category="all" searchQuery={searchQuery} />
+        <Marketing />
       </main>
       <Footer />
     </div>
