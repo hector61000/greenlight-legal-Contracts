@@ -6,6 +6,7 @@ interface ContractFormatProps {
     title: string;
     category?: string;
     categoryLabel?: string;
+    id?: string;
   };
   contractData: {
     firstPartyName: string;
@@ -24,8 +25,7 @@ interface ContractFormatProps {
 const ContractFormat: React.FC<ContractFormatProps> = ({ contract, contractData }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-md p-6 mb-6 contract-text">
-      <style>
-        {`
+      <style dangerouslySetInnerHTML={{ __html: `
         .contract-section {
           margin-bottom: 2rem;
         }
@@ -56,8 +56,7 @@ const ContractFormat: React.FC<ContractFormatProps> = ({ contract, contractData 
             break-inside: avoid;
           }
         }
-        `}
-      </style>
+      `}} />
 
       <h4 className="font-bold text-gray-800 mb-4 text-center text-xl">{contract.title} الكامل</h4>
       
