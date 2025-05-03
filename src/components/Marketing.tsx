@@ -1,17 +1,14 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Marketing: React.FC = () => {
-  return (
-    <section className="container mx-auto px-4 mb-12">
+  return <section className="container mx-auto px-4 mb-12">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">اكتشف منصة جرين لايت</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* First Marketing Ad */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="bg-gradient-to-r from-blue-600 to-green-500 h-48 flex items-center justify-center">
-            <img src="/lovable-uploads/570d9971-5068-4d70-86b4-c6619ddeaaa9.png" alt="صورة قانونية" className="w-full h-full object-cover" />
+            
           </div>
           <div className="p-6">
             <h3 className="text-xl font-bold mb-3">عقود قانونية موثوقة</h3>
@@ -46,8 +43,6 @@ const Marketing: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Marketing;
