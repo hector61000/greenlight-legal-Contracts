@@ -27,7 +27,7 @@ const Marketing: React.FC = () => {
           <div className="md:w-1/2">
             <img alt="صورة قانونية" src="/lovable-uploads/2d47672f-051f-40bc-b08b-e426f2da35ab.png" className="w-full h-full object-cover\\n\\n\\n object-cover" />
           </div>
-          <div className="md:w-1/2 p-6 flex flex-col justify-center">
+          <div className="md:w-1/2 p-6 flex flex-col justify-center px-[26px] py-[25px]">
             <h3 className="text-2xl font-bold mb-3">انضم إلى أكثر من 2000 محامي يستخدمون منصة جرين لايت</h3>
             <p className="text-gray-600 mb-4">استفد من مجموعة متنوعة من النماذج القانونية عالية الجودة التي تغطي مختلف المجالات والاحتياجات القانونية.</p>
             <Link to="/login" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full inline-block text-center">انضم الآن</Link>
