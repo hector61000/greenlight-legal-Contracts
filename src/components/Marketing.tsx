@@ -4,7 +4,7 @@ const Marketing: React.FC = () => {
   return <section className="container mx-auto px-4 mb-12">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">اكتشف منصة جرين لايت</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-[24px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-[24px] rounded-lg">
         {/* First Marketing Ad */}
         
 
@@ -27,10 +27,10 @@ const Marketing: React.FC = () => {
           <div className="md:w-1/2">
             <img alt="صورة قانونية" className="w-full h-full object-cover\\n\\n\\n object-cover" src="/lovable-uploads/f913ef7b-2d22-44f9-ac9d-088092237c2c.jpg" />
           </div>
-          <div className="md:w-1/2 p-6 flex flex-col justify-center px-[26px] py-[25px]">
-            <h3 className="text-2xl font-bold mb-3">انضم إلى أكثر من 2000 محامي يستخدمون منصة جرين لايت</h3>
-            <p className="text-gray-600 mb-4">استفد من مجموعة متنوعة من النماذج القانونية عالية الجودة التي تغطي مختلف المجالات والاحتياجات القانونية.</p>
-            <Link to="/login" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full inline-block text-center">انضم الآن</Link>
+          <div className="md:w-1/2 p-6 flex flex-col justify-center px-[26px] py-[25px] rounded-3xl bg-neutral-50">
+            <h3 className="mb-3 text-3xl font-extrabold text-red-600">العقد الإلكتروني :هو الذي يحدث بين برمجين عبر وسائل الإعلام، مثل الإنترنت أو البريد الإلكتروني أو المنصات، ويهدف إلى إنشاء تبادل مختلف، ويكون قابلاً للسرقات الرقمية قانونيًا إذا توافرت فيها الشروط القانونية المطلوبة يتميز هذا النوع من العقود بأنه يُبرم دون حاجة إلى التواجد المادي للأطراف، أي أن مجلس العقد يكون افتراضيًا وليس ماديًا </h3>
+            
+            
           </div>
         </div>
       </div>
