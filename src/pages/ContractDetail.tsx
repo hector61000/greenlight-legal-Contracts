@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -106,7 +105,8 @@ const ContractDetail = () => {
                 
                 {/* Contract Template - Styled with the new format */}
                 <div className="contract-text bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8 text-right leading-relaxed">
-                  <style jsx>{`
+                  <style>
+                    {`
                     .contract-text {
                       line-height: 1.8;
                       text-align: right;
@@ -119,7 +119,8 @@ const ContractDetail = () => {
                       background-color: #f9fafb;
                       border-radius: 4px;
                     }
-                  `}</style>
+                    `}
+                  </style>
                   
                   <h3 className="text-lg font-bold text-center mb-6">{contract.title}</h3>
                   

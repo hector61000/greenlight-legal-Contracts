@@ -24,7 +24,8 @@ interface ContractFormatProps {
 const ContractFormat: React.FC<ContractFormatProps> = ({ contract, contractData }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-md p-6 mb-6 contract-text">
-      <style jsx>{`
+      <style>
+        {`
         .contract-section {
           margin-bottom: 2rem;
         }
@@ -55,7 +56,8 @@ const ContractFormat: React.FC<ContractFormatProps> = ({ contract, contractData 
             break-inside: avoid;
           }
         }
-      `}</style>
+        `}
+      </style>
 
       <h4 className="font-bold text-gray-800 mb-4 text-center text-xl">{contract.title} الكامل</h4>
       
@@ -79,7 +81,7 @@ const ContractFormat: React.FC<ContractFormatProps> = ({ contract, contractData 
           </div>
           
           <div className="contract-clause">
-            <p className="text-gray-700"><span className="font-semibold">البند الثاني:</span> {contract.id === 'civil-2' ? 'يقر الطرف الأول أنه قد وهب للطرف الثاني هبة نهائية لا رجوع فيها، والطرف الثاني يقبل هذه الهبة، وذلك وفقاً للقوانين المصرية المنظمة للهبات.' : 'اتفق الطرفان على تنفيذ موضوع هذا العقد حسب الشروط والأحكام المتفق عليها.'}</p>
+            <p className="text-gray-700"><span className="font-semibold">البند الثاني:</span> {contract.title === 'عقد هبة' ? 'يقر الطرف الأول أنه قد وهب للطرف الثاني هبة نهائية لا رجوع فيها، والطرف الثاني يقبل هذه الهبة، وذلك وفقاً للقوانين المصرية المنظمة للهبات.' : 'اتفق الطرفان على تنفيذ موضوع هذا العقد حسب الشروط والأحكام المتفق عليها.'}</p>
           </div>
           
           <div className="contract-clause">

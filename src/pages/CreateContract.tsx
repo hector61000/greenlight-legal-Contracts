@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -166,7 +167,7 @@ const CreateContract = () => {
                 <p className="text-gray-600 mt-2">{contract?.description}</p>
               </div>
 
-              {isContractCreated ? (
+              {isContractCreated && contractData ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
                   <div className="flex items-center justify-center mb-4">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
@@ -180,10 +181,23 @@ const CreateContract = () => {
                     تم إنشاء العقد بناءً على البيانات المدخلة. يمكنك الآن تحميل العقد بالصيغة المفضلة لديك.
                   </p>
                   
-                  <ContractFormat 
-                    contract={contract} 
-                    contractData={contractData} 
-                  />
+                  {contract && (
+                    <ContractFormat 
+                      contract={contract} 
+                      contractData={{
+                        firstPartyName: contractData.firstPartyName,
+                        firstPartyNationality: contractData.firstPartyNationality,
+                        firstPartyAddress: contractData.firstPartyAddress,
+                        firstPartyID: contractData.firstPartyID,
+                        secondPartyName: contractData.secondPartyName,
+                        secondPartyNationality: contractData.secondPartyNationality,
+                        secondPartyAddress: contractData.secondPartyAddress,
+                        secondPartyID: contractData.secondPartyID,
+                        contractDate: contractData.contractDate,
+                        additionalTerms: contractData.additionalTerms
+                      }}
+                    />
+                  )}
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button onClick={downloadAsWord} className="bg-blue-600 hover:bg-blue-700 text-white">
