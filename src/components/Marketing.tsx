@@ -25,7 +25,7 @@ const Marketing: React.FC = () => {
       <div className="mt-8 bg-white rounded-lg shadow-md overflow-hidden">
         <div className="md:flex">
           <div className="md:w-1/2">
-            <img src="/lovable-uploads/570d9971-5068-4d70-86b4-c6619ddeaaa9.png" alt="صورة قانونية" className="w-full h-full object-cover" />
+            <img src="/lovable-uploads/570d9971-5068-4d70-86b4-c6619ddeaaa9.png" alt="صورة قانونية" className="w-full h-full object-cover\n\n\n" />
           </div>
           <div className="md:w-1/2 p-6 flex flex-col justify-center">
             <h3 className="text-2xl font-bold mb-3">انضم إلى أكثر من 2000 محامي يستخدمون منصة جرين لايت</h3>
