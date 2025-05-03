@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -116,7 +115,7 @@ const CreateContract = () => {
       toast({
         title: "تم التحميل بنجاح",
         description: `تم تنزيل عقد ${contract?.title} بصيغة Word`,
-        variant: "success"
+        variant: "default"
       });
     }, 1000);
   };
@@ -135,7 +134,7 @@ const CreateContract = () => {
       toast({
         title: "تم التحميل بنجاح",
         description: `تم تنزيل عقد ${contract?.title} بصيغة PDF`,
-        variant: "success"
+        variant: "default"
       });
     }, 1000);
   };
@@ -169,7 +168,7 @@ const CreateContract = () => {
                       </svg>
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-center text-green-700 mb-2">تم إنشاء العقد بنجاح</h3>
+                  <h3 className="text-xl font-bold text-center text-green-700 mb-2">تم إنشاء ال��قد بنجاح</h3>
                   <p className="text-center text-green-600 mb-6">
                     تم إنشاء العقد بناءً على البيانات المدخلة. يمكنك الآن تحميل العقد بالصيغة المفضلة لديك.
                   </p>
