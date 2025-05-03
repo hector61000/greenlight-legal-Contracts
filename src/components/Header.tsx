@@ -1,5 +1,9 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Home, FileText, PhoneCall } from 'lucide-react';
+import { Button } from './ui/button';
+
 const Header: React.FC = () => {
   return <header className="bg-white shadow-md py-4 mb-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
@@ -10,11 +14,26 @@ const Header: React.FC = () => {
           <h1 className="text-3xl font-bold logo-text">منصة جرين لايت</h1>
         </div>
         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-0 md:space-x-reverse md:space-x-4">
-          <div className="relative md:ml-4 w-full md:w-auto">
-            
-            <i className="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-          </div>
-          
+          <nav className="flex space-x-2 space-x-reverse rtl:space-x-reverse">
+            <Button variant="ghost" asChild>
+              <Link to="/" className="flex items-center">
+                <Home className="ml-2 h-4 w-4" />
+                الصفحة الرئيسية
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link to="/contracts" className="flex items-center">
+                <FileText className="ml-2 h-4 w-4" />
+                العقود
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link to="/contact" className="flex items-center">
+                <PhoneCall className="ml-2 h-4 w-4" />
+                اتصل بنا
+              </Link>
+            </Button>
+          </nav>
         </div>
       </div>
     </header>;
