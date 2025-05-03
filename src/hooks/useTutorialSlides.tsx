@@ -15,6 +15,8 @@ export function useTutorialSlides(totalSlides: number) {
     setDirection('next');
     setIsAnimating(true);
     
+    console.log("Moving to next slide");
+    
     // تأخير قصير لتطبيق الانتقال قبل تغيير الشريحة
     setTimeout(() => {
       setCurrentSlide((prev) => 
@@ -28,6 +30,8 @@ export function useTutorialSlides(totalSlides: number) {
     
     setDirection('prev');
     setIsAnimating(true);
+    
+    console.log("Moving to previous slide");
     
     // تأخير قصير لتطبيق الانتقال قبل تغيير الشريحة
     setTimeout(() => {
@@ -43,6 +47,8 @@ export function useTutorialSlides(totalSlides: number) {
     setDirection(index > currentSlide ? 'next' : 'prev');
     setIsAnimating(true);
     
+    console.log(`Going to slide ${index}`);
+    
     setTimeout(() => {
       setCurrentSlide(index);
     }, 50);
@@ -53,6 +59,7 @@ export function useTutorialSlides(totalSlides: number) {
     if (isAnimating) {
       const timer = setTimeout(() => {
         setIsAnimating(false);
+        console.log("Animation completed");
       }, transitionDuration);
       
       return () => clearTimeout(timer);

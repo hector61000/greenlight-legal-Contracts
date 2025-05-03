@@ -20,6 +20,21 @@ const SlideNavigation = ({
   onGoToSlide,
   isAnimating = false
 }: SlideNavigationProps) => {
+  const handlePrevClick = () => {
+    console.log("Navigation: Previous button clicked");
+    onPrev();
+  };
+
+  const handleNextClick = () => {
+    console.log("Navigation: Next button clicked");
+    onNext();
+  };
+
+  const handleDotClick = (index: number) => {
+    console.log(`Navigation: Dot ${index} clicked`);
+    onGoToSlide(index);
+  };
+
   return (
     <>
       <div className="absolute bottom-6 left-0 right-0 text-center text-gray-600">
@@ -30,7 +45,7 @@ const SlideNavigation = ({
         <Button 
           variant="outline"
           size="icon"
-          onClick={onPrev}
+          onClick={handlePrevClick}
           disabled={isAnimating}
           className="bg-white/80 hover:bg-white border border-gray-200 rounded-full transition-all duration-300"
         >
@@ -41,10 +56,10 @@ const SlideNavigation = ({
           {Array.from({ length: totalSlides }).map((_, index) => (
             <button
               key={index}
-              onClick={() => onGoToSlide(index)}
+              onClick={() => handleDotClick(index)}
               disabled={isAnimating || index === currentSlide}
               className={`transition-all duration-300 ${
-                index === currentSlide ? 'bg-green-600 w-6' : 'bg-gray-300'
+                index === currentSlide ? 'bg-green-600 w-6' : 'bg-gray-300 hover:bg-gray-400 w-3'
               } h-2 rounded-full`}
             />
           ))}
@@ -53,7 +68,7 @@ const SlideNavigation = ({
         <Button 
           variant="outline"
           size="icon"
-          onClick={onNext}
+          onClick={handleNextClick}
           disabled={isAnimating}
           className="bg-white/80 hover:bg-white border border-gray-200 rounded-full transition-all duration-300"
         >

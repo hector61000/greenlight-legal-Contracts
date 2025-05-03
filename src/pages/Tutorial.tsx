@@ -1,5 +1,5 @@
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -29,6 +29,10 @@ const Tutorial = () => {
   ];
   
   const { currentSlide, nextSlide, prevSlide, goToSlide, isAnimating, direction, transitionDuration } = useTutorialSlides(slides.length);
+
+  useEffect(() => {
+    console.log(`Current slide: ${currentSlide}, Animating: ${isAnimating}, Direction: ${direction}`);
+  }, [currentSlide, isAnimating, direction]);
 
   const goToContracts = () => {
     navigate('/contracts');
@@ -61,7 +65,9 @@ const Tutorial = () => {
               <i className="fas fa-balance-scale text-9xl transform rotate-12"></i>
             </div>
             
-            {slideComponents}
+            <div className="relative w-full h-full" style={{ minHeight: '500px' }}>
+              {slideComponents}
+            </div>
             
             <SlideNavigation 
               currentSlide={currentSlide}

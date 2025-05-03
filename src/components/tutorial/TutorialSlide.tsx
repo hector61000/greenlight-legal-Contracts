@@ -23,14 +23,16 @@ const TutorialSlide = ({
   useEffect(() => {
     if (isActive) {
       setVisible(true);
+      console.log(`Slide with title "${title}" is now active`);
     } else {
       const timer = setTimeout(() => {
         setVisible(false);
+        console.log(`Slide with title "${title}" is now hidden`);
       }, transitionDuration);
       
       return () => clearTimeout(timer);
     }
-  }, [isActive, transitionDuration]);
+  }, [isActive, transitionDuration, title]);
 
   if (!visible && !isActive) {
     return null;
@@ -53,9 +55,12 @@ const TutorialSlide = ({
     return '';
   };
 
+  const animationClass = getAnimationClasses();
+  console.log(`Animation class for "${title}": ${animationClass}`);
+
   return (
     <div 
-      className={`flex flex-col items-center justify-start h-full z-10 relative py-12 transition-opacity ${getAnimationClasses()}`}
+      className={`flex flex-col items-center justify-start h-full z-10 relative py-12 transition-opacity ${animationClass}`}
       style={{ 
         transitionDuration: `${transitionDuration}ms`,
         opacity: isActive ? 1 : 0,
