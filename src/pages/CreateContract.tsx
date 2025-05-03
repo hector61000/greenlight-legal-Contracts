@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -168,33 +169,70 @@ const CreateContract = () => {
                       </svg>
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-center text-green-700 mb-2">تم إنشاء ال��قد بنجاح</h3>
+                  <h3 className="text-xl font-bold text-center text-green-700 mb-2">تم إنشاء العقد بنجاح</h3>
                   <p className="text-center text-green-600 mb-6">
                     تم إنشاء العقد بناءً على البيانات المدخلة. يمكنك الآن تحميل العقد بالصيغة المفضلة لديك.
                   </p>
                   
-                  <div className="bg-white border border-gray-200 rounded-md p-4 mb-6">
-                    <h4 className="font-bold text-gray-800 mb-2">ملخص العقد</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-gray-600"><strong>الطرف الأول:</strong> {contractData?.firstPartyName}</p>
-                        <p className="text-gray-600"><strong>الجنسية:</strong> {contractData?.firstPartyNationality}</p>
-                        <p className="text-gray-600"><strong>العنوان:</strong> {contractData?.firstPartyAddress}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-600"><strong>الطرف الثاني:</strong> {contractData?.secondPartyName}</p>
-                        <p className="text-gray-600"><strong>الجنسية:</strong> {contractData?.secondPartyNationality}</p>
-                        <p className="text-gray-600"><strong>العنوان:</strong> {contractData?.secondPartyAddress}</p>
+                  <div className="bg-white border border-gray-200 rounded-md p-6 mb-6">
+                    <h4 className="font-bold text-gray-800 mb-4 text-center text-xl">عقد {contract?.title} الكامل</h4>
+                    
+                    <div className="border-b border-gray-200 pb-4 mb-6">
+                      <h5 className="font-semibold text-lg mb-2 text-gray-800">مقدمة العقد</h5>
+                      <p className="text-gray-700 mb-2">إنه في يوم {contractData?.contractDate} الموافق ................... تم الاتفاق بين كل من:</p>
+                      <p className="text-gray-700">السيد/ <span className="font-semibold">{contractData?.firstPartyName}</span> {contractData?.firstPartyNationality} الجنسية، حامل بطاقة رقم <span className="font-semibold">{contractData?.firstPartyID}</span>، مقيم في <span className="font-semibold">{contractData?.firstPartyAddress}</span> (ويشار إليه فيما بعد بـ "الطرف الأول")</p>
+                      <p className="text-gray-700 mt-2">والسيد/ <span className="font-semibold">{contractData?.secondPartyName}</span> {contractData?.secondPartyNationality} الجنسية، حامل بطاقة رقم <span className="font-semibold">{contractData?.secondPartyID}</span>، مقيم في <span className="font-semibold">{contractData?.secondPartyAddress}</span> (ويشار إليه فيما بعد بـ "الطرف الثاني")</p>
+                    </div>
+                    
+                    <div className="border-b border-gray-200 pb-4 mb-6">
+                      <h5 className="font-semibold text-lg mb-2 text-gray-800">تمهيد</h5>
+                      <p className="text-gray-700">حيث أن الطرف الأول يرغب في {contract?.title === 'عقد هبة' ? 'هبة الطرف الثاني' : 'التعاقد مع الطرف الثاني'} وحيث أن الطرف الثاني قد قبل ذلك، فقد اتفق الطرفان وهما بكامل الأهلية القانونية المعتبرة شرعاً وقانوناً على ما يلي:</p>
+                    </div>
+                    
+                    <div className="border-b border-gray-200 pb-4 mb-6">
+                      <h5 className="font-semibold text-lg mb-2 text-gray-800">بنود العقد</h5>
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-gray-700"><span className="font-semibold">البند الأول:</span> يعتبر التمهيد السابق جزءاً لا يتجزأ من هذا العقد.</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-700"><span className="font-semibold">البند الثاني:</span> {contract?.id === 'civil-2' ? 
+                          'يقر الطرف الأول أنه قد وهب للطرف الثاني هبة نهائية لا رجوع فيها، والطرف الثاني يقبل هذه الهبة، وذلك وفقاً للقوانين المصرية المنظمة للهبات.' : 
+                          'اتفق الطرفان على تنفيذ موضوع هذا العقد حسب الشروط والأحكام المتفق عليها.'}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-700"><span className="font-semibold">البند الثالث:</span> يقر الطرفان بأنهما على علم تام بكافة الشروط والالتزامات الواردة في هذا العقد.</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-700"><span className="font-semibold">البند الرابع:</span> يلتزم الطرفان بتنفيذ هذا العقد بحسن نية وبما يتفق مع القانون المصري.</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-700"><span className="font-semibold">البند الخامس:</span> في حالة نشوء أي نزاع بين الطرفين بخصوص تنفيذ أو تفسير هذا العقد، يتم حله ودياً، وإذا تعذر ذلك يتم اللجوء إلى المحاكم المصرية المختصة.</p>
+                        </div>
+                        {contractData?.additionalTerms && (
+                        <div>
+                          <p className="text-gray-700"><span className="font-semibold">الشروط الإضافية:</span> {contractData.additionalTerms}</p>
+                        </div>
+                        )}
                       </div>
                     </div>
-                    <div className="mt-4">
-                      <p className="text-gray-600"><strong>تاريخ العقد:</strong> {contractData?.contractDate}</p>
-                      {contractData?.additionalTerms && (
-                        <div className="mt-2">
-                          <p className="text-gray-600"><strong>شروط إضافية:</strong></p>
-                          <p className="text-gray-600 bg-gray-50 p-2 rounded mt-1">{contractData.additionalTerms}</p>
+                    
+                    <div>
+                      <h5 className="font-semibold text-lg mb-4 text-gray-800">توقيعات الأطراف</h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="border border-gray-200 p-4 rounded-md">
+                          <p className="font-semibold mb-2">الطرف الأول:</p>
+                          <p>{contractData?.firstPartyName}</p>
+                          <div className="mt-6 h-12 border-b border-dashed border-gray-300"></div>
+                          <p className="text-center text-xs text-gray-500 mt-1">التوقيع</p>
                         </div>
-                      )}
+                        <div className="border border-gray-200 p-4 rounded-md">
+                          <p className="font-semibold mb-2">الطرف الثاني:</p>
+                          <p>{contractData?.secondPartyName}</p>
+                          <div className="mt-6 h-12 border-b border-dashed border-gray-300"></div>
+                          <p className="text-center text-xs text-gray-500 mt-1">التوقيع</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
