@@ -8,7 +8,7 @@ const IntroSlide = () => {
       title="منصة جرين لايت"
       subtitle="المنصة القانونية الأولى"
     >
-      <div className="flex flex-col items-center justify-center h-full z-10 relative py-16">
+      <div className="flex flex-col items-center justify-center z-10 relative py-8">
         <div className="logo-placeholder mb-8">
           <span>GL</span>
         </div>

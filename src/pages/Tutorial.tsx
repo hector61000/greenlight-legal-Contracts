@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -28,11 +28,26 @@ const Tutorial = () => {
     { component: <WordDownloadsSlide /> },
   ];
   
-  const { currentSlide, nextSlide, prevSlide, goToSlide } = useTutorialSlides(slides.length);
+  const { currentSlide, nextSlide, prevSlide, goToSlide, isAnimating, direction, transitionDuration } = useTutorialSlides(slides.length);
 
   const goToContracts = () => {
     navigate('/contracts');
   };
+  
+  // استخدام useMemo لتجنب إعادة إنشاء المكونات في كل عملية تصيير
+  const slideComponents = useMemo(() => {
+    return slides.map((slide, index) => {
+      // قم بتمرير الخصائص إلى كل شريحة
+      const slideElement = React.cloneElement(slide.component, {
+        key: index,
+        isActive: currentSlide === index,
+        direction: direction,
+        transitionDuration: transitionDuration
+      });
+      
+      return slideElement;
+    });
+  }, [slides, currentSlide, direction, transitionDuration]);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -41,12 +56,12 @@ const Tutorial = () => {
         <div className="container mx-auto py-8 px-4">
           <h1 className="text-3xl font-bold text-center mb-8">دليل استخدام منصة جرين لايت</h1>
           
-          <div className="slide-container bg-white pattern-bg relative rounded-2xl overflow-hidden shadow-xl mx-auto max-w-6xl">
+          <div className="slide-container bg-white pattern-bg relative rounded-2xl overflow-hidden shadow-xl mx-auto max-w-6xl" style={{ minHeight: '500px' }}>
             <div className="legal-decoration">
               <i className="fas fa-balance-scale text-9xl transform rotate-12"></i>
             </div>
             
-            {slides[currentSlide].component}
+            {slideComponents}
             
             <SlideNavigation 
               currentSlide={currentSlide}
@@ -54,6 +69,7 @@ const Tutorial = () => {
               onPrev={prevSlide}
               onNext={nextSlide}
               onGoToSlide={goToSlide}
+              isAnimating={isAnimating}
             />
           </div>
           

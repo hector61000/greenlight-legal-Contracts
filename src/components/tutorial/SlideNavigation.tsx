@@ -9,6 +9,7 @@ interface SlideNavigationProps {
   onPrev: () => void;
   onNext: () => void;
   onGoToSlide: (index: number) => void;
+  isAnimating?: boolean;
 }
 
 const SlideNavigation = ({ 
@@ -16,7 +17,8 @@ const SlideNavigation = ({
   totalSlides, 
   onPrev, 
   onNext, 
-  onGoToSlide 
+  onGoToSlide,
+  isAnimating = false
 }: SlideNavigationProps) => {
   return (
     <>
@@ -28,8 +30,9 @@ const SlideNavigation = ({
         <Button 
           variant="outline"
           size="icon"
-          onClick={onPrev} 
-          className="bg-white/80 hover:bg-white border border-gray-200 rounded-full"
+          onClick={onPrev}
+          disabled={isAnimating}
+          className="bg-white/80 hover:bg-white border border-gray-200 rounded-full transition-all duration-300"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
@@ -39,9 +42,10 @@ const SlideNavigation = ({
             <button
               key={index}
               onClick={() => onGoToSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
+              disabled={isAnimating || index === currentSlide}
+              className={`transition-all duration-300 ${
                 index === currentSlide ? 'bg-green-600 w-6' : 'bg-gray-300'
-              }`}
+              } h-2 rounded-full`}
             />
           ))}
         </div>
@@ -49,8 +53,9 @@ const SlideNavigation = ({
         <Button 
           variant="outline"
           size="icon"
-          onClick={onNext} 
-          className="bg-white/80 hover:bg-white border border-gray-200 rounded-full"
+          onClick={onNext}
+          disabled={isAnimating}
+          className="bg-white/80 hover:bg-white border border-gray-200 rounded-full transition-all duration-300"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
