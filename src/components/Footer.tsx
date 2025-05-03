@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Footer: React.FC = () => {
-  return (
-    <footer className="bg-gray-900 text-white py-8">
+  return <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -59,11 +56,11 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <i className="fas fa-phone-alt ml-2 text-green-500"></i>
-                <span className="text-gray-400">+20 123 456 7890</span>
+                <span className="text-gray-400">⁦+20 12 81343893⁩</span>
               </li>
               <li className="flex items-center">
                 <i className="fas fa-envelope ml-2 text-green-500"></i>
-                <span className="text-gray-400">info@greenlight.legal</span>
+                <span className="text-gray-400">mantan0002012@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -73,8 +70,6 @@ const Footer: React.FC = () => {
           <p>© {new Date().getFullYear()} منصة جرين لايت. جميع الحقوق محفوظة</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
