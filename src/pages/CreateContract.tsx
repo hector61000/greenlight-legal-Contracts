@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -13,7 +12,7 @@ import { Textarea } from '../components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { FileText, FilePdf, FileWord, Download } from 'lucide-react';
+import { FileText, FileType, Download } from 'lucide-react';
 import { Checkbox } from '../components/ui/checkbox';
 
 const formSchema = z.object({
@@ -75,7 +74,7 @@ const CreateContract = () => {
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium inline-flex items-center"
             >
               <i className="fas fa-arrow-right ml-2"></i>
-              العودة للصفحة الرئيسية
+              العودة ��لصفحة الرئيسية
             </Link>
           </div>
         </div>
@@ -122,18 +121,18 @@ const CreateContract = () => {
       <main className="flex-grow bg-gray-50 py-10">
         <div className="container mx-auto px-4">
           <Card className="overflow-hidden">
-            <div className={`bg-${contract.color}-600 h-2`}></div>
+            <div className={`bg-${contract?.color}-600 h-2`}></div>
             <CardContent className="p-6 pt-6">
               <div className="mb-6">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
                   <div>
-                    <span className={`bg-${contract.color}-100 text-${contract.color}-800 text-xs font-semibold px-2.5 py-0.5 rounded mb-2 inline-block`}>
-                      {contract.categoryLabel}
+                    <span className={`bg-${contract?.color}-100 text-${contract?.color}-800 text-xs font-semibold px-2.5 py-0.5 rounded mb-2 inline-block`}>
+                      {contract?.categoryLabel}
                     </span>
-                    <h1 className="text-3xl font-bold text-gray-800">إنشاء {contract.title}</h1>
+                    <h1 className="text-3xl font-bold text-gray-800">إنشاء {contract?.title}</h1>
                   </div>
                 </div>
-                <p className="text-gray-600 mt-2">{contract.description}</p>
+                <p className="text-gray-600 mt-2">{contract?.description}</p>
               </div>
 
               <div className="bg-yellow-50 border-r-4 border-yellow-400 p-4 rounded-sm mb-8">
@@ -340,7 +339,7 @@ const CreateContract = () => {
                       variant="outline"
                       className="border-blue-600 text-blue-600 hover:bg-blue-50"
                     >
-                      <FileWord className="ml-2 h-4 w-4" />
+                      <FileType className="ml-2 h-4 w-4" />
                       تنزيل Word
                     </Button>
                     <Button 
@@ -349,7 +348,7 @@ const CreateContract = () => {
                       variant="outline"
                       className="border-red-600 text-red-600 hover:bg-red-50"
                     >
-                      <FilePdf className="ml-2 h-4 w-4" />
+                      <FileType className="ml-2 h-4 w-4" />
                       تنزيل PDF
                     </Button>
                     <Link to="/">

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, FileWord } from 'lucide-react';
+import { FileText, FileType } from 'lucide-react';
 
 export interface ContractType {
   id: string;
@@ -35,7 +35,7 @@ const ContractCard: React.FC<{ contract: ContractType }> = ({ contract }) => {
           to={`/download/${contract.id}`}
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md w-full flex items-center justify-center"
         >
-          <FileWord className="ml-2 h-4 w-4" />
+          <FileType className="ml-2 h-4 w-4" />
           تنزيل النموذج
         </Link>
       </div>
