@@ -4,17 +4,11 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import Features from '../components/Features';
-import Categories from '../components/Categories';
 import ContractsList from '../components/ContractsList';
 import Footer from '../components/Footer';
 
 const Index = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-  };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -27,8 +21,7 @@ const Index = () => {
         <Hero />
         <Stats />
         <Features />
-        <Categories onCategoryChange={handleCategoryChange} />
-        <ContractsList category={activeCategory} searchQuery={searchQuery} />
+        <ContractsList category="all" searchQuery={searchQuery} />
       </main>
       <Footer />
     </div>

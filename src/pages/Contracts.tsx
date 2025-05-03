@@ -24,8 +24,12 @@ const Contracts = () => {
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold text-center mb-8">جميع العقود المتاحة</h1>
           <p className="text-center text-gray-600 mb-8">اختر من مجموعة متنوعة من العقود الاحترافية المصممة لتلبية احتياجاتك</p>
+          
+          {/* Make the Categories section more prominent */}
+          <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+            <Categories onCategoryChange={handleCategoryChange} />
+          </div>
         </div>
-        <Categories onCategoryChange={handleCategoryChange} />
         <ContractsList category={activeCategory} searchQuery={searchQuery} />
       </main>
       <Footer />
