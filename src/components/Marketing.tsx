@@ -4,18 +4,9 @@ const Marketing: React.FC = () => {
   return <section className="container mx-auto px-4 mb-12">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">اكتشف منصة جرين لايت</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-[24px]">
         {/* First Marketing Ad */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-green-500 h-48 flex items-center justify-center">
-            
-          </div>
-          <div className="p-6">
-            <h3 className="text-xl font-bold mb-3">عقود قانونية موثوقة</h3>
-            <p className="text-gray-600 mb-4">اختر من بين أكثر من 60 نموذج عقد مصمم بواسطة خبراء قانونيين ومتوافقة مع القوانين المصرية.</p>
-            <Link to="/contracts" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full inline-block">تصفح العقود</Link>
-          </div>
-        </div>
+        
 
         {/* Second Marketing Ad */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
