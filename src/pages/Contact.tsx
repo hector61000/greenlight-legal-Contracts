@@ -5,12 +5,14 @@ import Footer from '../components/Footer';
 import { Button } from '../components/ui/button';
 import { PhoneCall, Mail, MapPin, Send } from 'lucide-react';
 import { useToast } from '../components/ui/use-toast';
+import { Input } from '../components/ui/input';
 
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '', // Added phone field
     message: '',
   });
 
@@ -23,7 +25,7 @@ const Contact = () => {
     e.preventDefault();
     
     // التحقق من وجود بيانات
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
       toast({
         title: "خطأ",
         description: "يرجى ملء جميع الحقول المطلوبة",
@@ -33,7 +35,7 @@ const Contact = () => {
     }
     
     // تجهيز النص المراد إرساله
-    const messageText = `مرحبًا، أريد الحصول على عقد من منصه جرين لايت.\n\nالاسم: ${formData.name}\nالبريد الإلكتروني: ${formData.email}\nالرسالة: ${formData.message}`;
+    const messageText = `مرحبًا، أريد الحصول على عقد من منصه جرين لايت.\n\nالاسم: ${formData.name}\nالبريد الإلكتروني: ${formData.email}\nرقم الهاتف: ${formData.phone}\nالرسالة: ${formData.message}`;
     
     // تشفير النص للاستخدام في الرابط
     const encodedMessage = encodeURIComponent(messageText);
@@ -49,7 +51,7 @@ const Contact = () => {
     });
     
     // إعادة تعيين النموذج
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
   return (
@@ -108,6 +110,17 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 mb-1">رقم الهاتف</label>
+                      <input 
+                        type="tel" 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" 
+                        placeholder="مثال: 01XXXXXXXXX"
                       />
                     </div>
                     <div>
