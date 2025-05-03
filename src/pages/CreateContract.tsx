@@ -14,6 +14,8 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { FileText, FileType, Download } from 'lucide-react';
 import { Checkbox } from '../components/ui/checkbox';
+import ContractFormat from '../components/ContractFormat';
+
 const formSchema = z.object({
   firstPartyName: z.string().min(3, {
     message: "يجب أن يتكون اسم الطرف الأول من 3 أحرف على الأقل"
@@ -47,15 +49,14 @@ const formSchema = z.object({
     message: "يجب الموافقة على الشروط والأحكام للمتابعة"
   })
 });
+
 type FormValues = z.infer<typeof formSchema>;
+
 const CreateContract = () => {
-  const {
-    id
-  } = useParams<{
-    id: string;
-  }>();
+  const { id } = useParams<{ id: string; }>();
   const [contract, setContract] = useState(contractsData.find(c => c.id === id));
   const navigate = useNavigate();
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -72,11 +73,14 @@ const CreateContract = () => {
       agreeToTerms: false
     }
   });
+
   const [isCreating, setIsCreating] = useState(false);
   const [isContractCreated, setIsContractCreated] = useState(false);
   const [contractData, setContractData] = useState<FormValues | null>(null);
+
   if (!contract) {
-    return <div className="flex flex-col min-h-screen">
+    return (
+      <div className="flex flex-col min-h-screen">
         <Header />
         <div className="flex-grow flex items-center justify-center bg-gray-50 py-16">
           <div className="text-center">
@@ -91,8 +95,10 @@ const CreateContract = () => {
           </div>
         </div>
         <Footer />
-      </div>;
+      </div>
+    );
   }
+
   const onSubmit = (data: FormValues) => {
     setIsCreating(true);
     setTimeout(() => {
@@ -105,6 +111,7 @@ const CreateContract = () => {
       setIsCreating(false);
     }, 1500);
   };
+
   const downloadAsWord = () => {
     if (!contractData) return;
     toast({
@@ -113,7 +120,6 @@ const CreateContract = () => {
     });
 
     // In a real application, we would generate a Word document with the contract data
-    // Here we'll simulate a download by showing a success message
     setTimeout(() => {
       toast({
         title: "تم التحميل بنجاح",
@@ -122,6 +128,7 @@ const CreateContract = () => {
       });
     }, 1000);
   };
+
   const downloadAsPDF = () => {
     if (!contractData) return;
     toast({
@@ -130,7 +137,6 @@ const CreateContract = () => {
     });
 
     // In a real application, we would generate a PDF document with the contract data
-    // Here we'll simulate a download by showing a success message
     setTimeout(() => {
       toast({
         title: "تم التحميل بنجاح",
@@ -139,7 +145,9 @@ const CreateContract = () => {
       });
     }, 1000);
   };
-  return <div className="flex flex-col min-h-screen">
+
+  return (
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow bg-gray-50 py-10">
         <div className="container mx-auto px-4">
@@ -158,7 +166,8 @@ const CreateContract = () => {
                 <p className="text-gray-600 mt-2">{contract?.description}</p>
               </div>
 
-              {isContractCreated ? <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+              {isContractCreated ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
                   <div className="flex items-center justify-center mb-4">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,63 +180,10 @@ const CreateContract = () => {
                     تم إنشاء العقد بناءً على البيانات المدخلة. يمكنك الآن تحميل العقد بالصيغة المفضلة لديك.
                   </p>
                   
-                  <div className="bg-white border border-gray-200 rounded-md p-6 mb-6">
-                    <h4 className="font-bold text-gray-800 mb-4 text-center text-xl">عقد {contract?.title} الكامل</h4>
-                    
-                    <div className="border-b border-gray-200 pb-4 mb-6">
-                      <h5 className="font-semibold text-lg mb-2 text-gray-800">مقدمة العقد</h5>
-                      <p className="text-gray-700 mb-2">إنه في يوم {contractData?.contractDate} الموافق ................... تم الاتفاق بين كل من:</p>
-                      <p className="text-gray-700">السيد/ <span className="font-semibold">{contractData?.firstPartyName}</span> {contractData?.firstPartyNationality} الجنسية، حامل بطاقة رقم <span className="font-semibold">{contractData?.firstPartyID}</span>، مقيم في <span className="font-semibold">{contractData?.firstPartyAddress}</span> (ويشار إليه فيما بعد بـ "الطرف الأول")</p>
-                      <p className="text-gray-700 mt-2">والسيد/ <span className="font-semibold">{contractData?.secondPartyName}</span> {contractData?.secondPartyNationality} الجنسية، حامل بطاقة رقم <span className="font-semibold">{contractData?.secondPartyID}</span>، مقيم في <span className="font-semibold">{contractData?.secondPartyAddress}</span> (ويشار إليه فيما بعد بـ "الطرف الثاني")</p>
-                    </div>
-                    
-                    <div className="border-b border-gray-200 pb-4 mb-6">
-                      <h5 className="font-semibold text-lg mb-2 text-gray-800">تمهيد</h5>
-                      <p className="text-gray-700">حيث أن الطرف الأول يرغب في {contract?.title === 'عقد هبة' ? 'هبة الطرف الثاني' : 'التعاقد مع الطرف الثاني'} وحيث أن الطرف الثاني قد قبل ذلك، فقد اتفق الطرفان وهما بكامل الأهلية القانونية المعتبرة شرعاً وقانوناً على ما يلي:</p>
-                    </div>
-                    
-                    <div className="border-b border-gray-200 pb-4 mb-6">
-                      <h5 className="font-semibold text-lg mb-2 text-gray-800">بنود العقد</h5>
-                      <div className="space-y-3">
-                        <div>
-                          <p className="text-gray-700"><span className="font-semibold">البند الأول:</span> يعتبر التمهيد السابق جزءاً لا يتجزأ من هذا العقد.</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-700"><span className="font-semibold">البند الثاني:</span> {contract?.id === 'civil-2' ? 'يقر الطرف الأول أنه قد وهب للطرف الثاني هبة نهائية لا رجوع فيها، والطرف الثاني يقبل هذه الهبة، وذلك وفقاً للقوانين المصرية المنظمة للهبات.' : 'اتفق الطرفان على تنفيذ موضوع هذا العقد حسب الشروط والأحكام المتفق عليها.'}</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-700"><span className="font-semibold">البند الثالث:</span> يقر الطرفان بأنهما على علم تام بكافة الشروط والالتزامات الواردة في هذا العقد.</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-700"><span className="font-semibold">البند الرابع:</span> يلتزم الطرفان بتنفيذ هذا العقد بحسن نية وبما يتفق مع القانون المصري.</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-700"><span className="font-semibold">البند الخامس:</span> في حالة نشوء أي نزاع بين الطرفين بخصوص تنفيذ أو تفسير هذا العقد، يتم حله ودياً، وإذا تعذر ذلك يتم اللجوء إلى المحاكم المصرية المختصة.</p>
-                        </div>
-                        {contractData?.additionalTerms && <div>
-                          <p className="text-gray-700"><span className="font-semibold">الشروط الإضافية:</span> {contractData.additionalTerms}</p>
-                        </div>}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h5 className="font-semibold text-lg mb-4 text-gray-800">توقيعات الأطراف</h5>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="border border-gray-200 p-4 rounded-md">
-                          <p className="font-semibold mb-2">الطرف الأول:</p>
-                          <p>{contractData?.firstPartyName}</p>
-                          <div className="mt-6 h-12 border-b border-dashed border-gray-300"></div>
-                          <p className="text-center text-xs text-gray-500 mt-1">التوقيع</p>
-                        </div>
-                        <div className="border border-gray-200 p-4 rounded-md">
-                          <p className="font-semibold mb-2">الطرف الثاني:</p>
-                          <p>{contractData?.secondPartyName}</p>
-                          <div className="mt-6 h-12 border-b border-dashed border-gray-300"></div>
-                          <p className="text-center text-xs text-gray-500 mt-1">التوقيع</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ContractFormat 
+                    contract={contract} 
+                    contractData={contractData} 
+                  />
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button onClick={downloadAsWord} className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -247,132 +203,134 @@ const CreateContract = () => {
                       </Button>
                     </Link>
                   </div>
-                </div> : <Form {...form}>
+                </div>
+              ) : (
+                <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="bg-gray-100 p-4 rounded-md mb-6">
                       <h2 className="text-xl font-medium mb-4">بيانات الطرف الأول</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField control={form.control} name="firstPartyName" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>اسم الطرف الأول</FormLabel>
-                              <FormControl>
-                                <Input placeholder="الاسم بالكامل" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="firstPartyNationality" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>الجنسية</FormLabel>
-                              <FormControl>
-                                <Input placeholder="الجنسية" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="firstPartyAddress" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>عنوان الإقامة</FormLabel>
-                              <FormControl>
-                                <Input placeholder="العنوان بالتفصيل" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="firstPartyID" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>رقم الهوية/جواز السفر</FormLabel>
-                              <FormControl>
-                                <Input placeholder="رقم الهوية أو جواز السفر" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
+                        <FormField control={form.control} name="firstPartyName" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>اسم الطرف الأول</FormLabel>
+                            <FormControl>
+                              <Input placeholder="الاسم بالكامل" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="firstPartyNationality" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>الجنسية</FormLabel>
+                            <FormControl>
+                              <Input placeholder="الجنسية" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="firstPartyAddress" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>عنوان الإقامة</FormLabel>
+                            <FormControl>
+                              <Input placeholder="العنوان بالتفصيل" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="firstPartyID" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>رقم الهوية/جواز السفر</FormLabel>
+                            <FormControl>
+                              <Input placeholder="رقم الهوية أو جواز السفر" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
                       </div>
                     </div>
 
                     <div className="bg-gray-100 p-4 rounded-md mb-6">
                       <h2 className="text-xl font-medium mb-4">بيانات الطرف الثاني</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField control={form.control} name="secondPartyName" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>اسم الطرف الثاني</FormLabel>
-                              <FormControl>
-                                <Input placeholder="الاسم بالكامل" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="secondPartyNationality" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>الجنسية</FormLabel>
-                              <FormControl>
-                                <Input placeholder="الجنسية" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="secondPartyAddress" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>عنوان الإقامة</FormLabel>
-                              <FormControl>
-                                <Input placeholder="العنوان بالتفصيل" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="secondPartyID" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>رقم الهوية/جواز السفر</FormLabel>
-                              <FormControl>
-                                <Input placeholder="رقم الهوية أو جواز السفر" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
+                        <FormField control={form.control} name="secondPartyName" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>اسم الطرف الثاني</FormLabel>
+                            <FormControl>
+                              <Input placeholder="الاسم بالكامل" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="secondPartyNationality" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>الجنسية</FormLabel>
+                            <FormControl>
+                              <Input placeholder="الجنسية" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="secondPartyAddress" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>عنوان الإقامة</FormLabel>
+                            <FormControl>
+                              <Input placeholder="العنوان بالتفصيل" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="secondPartyID" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>رقم الهوية/جواز السفر</FormLabel>
+                            <FormControl>
+                              <Input placeholder="رقم الهوية أو جواز السفر" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
                       </div>
                     </div>
 
                     <div className="bg-gray-100 p-4 rounded-md mb-6">
                       <h2 className="text-xl font-medium mb-4">بيانات العقد</h2>
                       <div className="grid grid-cols-1 gap-4">
-                        <FormField control={form.control} name="contractDate" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>تاريخ تحرير العقد</FormLabel>
-                              <FormControl>
-                                <Input type="date" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="additionalTerms" render={({
-                      field
-                    }) => <FormItem>
-                              <FormLabel>شروط خاصة (اختياري)</FormLabel>
-                              <FormControl>
-                                <Textarea placeholder="يمكنك إضافة شروط خاصة إضافية للعقد" {...field} rows={4} />
-                              </FormControl>
+                        <FormField control={form.control} name="contractDate" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>تاريخ تحرير العقد</FormLabel>
+                            <FormControl>
+                              <Input type="date" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="additionalTerms" render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>شروط خاصة (اختياري)</FormLabel>
+                            <FormControl>
+                              <Textarea placeholder="يمكنك إضافة شروط خاصة إضافية للعقد" {...field} rows={4} />
+                            </FormControl>
+                            <FormDescription>
+                              أي شروط إضافية ستتم إضافتها إلى العقد في البنود الخاصة.
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="agreeToTerms" render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0 space-x-reverse">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel>
+                                أقر بأن البيانات المدخلة صحيحة وأوافق على الشروط والأحكام
+                              </FormLabel>
                               <FormDescription>
-                                أي شروط إضافية ستتم إضافتها إلى العقد في البنود الخاصة.
+                                سيتم إنشاء العقد وفقاً للبيانات المدخلة وسيكون ملزماً قانوناً.
                               </FormDescription>
-                              <FormMessage />
-                            </FormItem>} />
-                        <FormField control={form.control} name="agreeToTerms" render={({
-                      field
-                    }) => <FormItem className="flex flex-row items-start space-x-3 space-y-0 space-x-reverse">
-                              <FormControl>
-                                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                              </FormControl>
-                              <div className="space-y-1 leading-none">
-                                <FormLabel>
-                                  أقر بأن البيانات المدخلة صحيحة وأوافق على الشروط والأحكام
-                                </FormLabel>
-                                <FormDescription>
-                                  سيتم إنشاء العقد وفقاً للبيانات المدخلة وسيكون ملزماً قانوناً.
-                                </FormDescription>
-                              </div>
-                              <FormMessage />
-                            </FormItem>} />
+                            </div>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
                       </div>
                     </div>
 
@@ -388,12 +346,15 @@ const CreateContract = () => {
                       </Link>
                     </div>
                   </form>
-                </Form>}
+                </Form>
+              )}
             </CardContent>
           </Card>
         </div>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default CreateContract;
