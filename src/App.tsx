@@ -11,6 +11,7 @@ import CreateContract from "./pages/CreateContract";
 import Login from "./pages/Login";
 import Contracts from "./pages/Contracts";
 import Contact from "./pages/Contact";
+import Tutorial from "./pages/Tutorial";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/contracts" element={<Contracts />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/tutorial" element={<Tutorial />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
